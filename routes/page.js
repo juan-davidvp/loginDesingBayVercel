@@ -26,7 +26,7 @@ router.get('/login', (req, res) => {
     if (req.session.user) {
         return res.redirect('/dashboard');
     }
-    res.sendFile(path.join(__dirname, '../Public', 'login.html'));
+    res.sendFile(path.join(process.cwd(), 'Public', 'login.html'));
 });
 
 // Ruta protegida de ejemplo (dashboard)
