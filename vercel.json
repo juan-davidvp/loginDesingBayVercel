@@ -1,15 +1,27 @@
 {
-    "version": 2,
-    "builds": [
+  "version": 2,
+  "builds": [
     {
-        "src": "index.js",
-        "use": "@vercel/node"
-    }
-],
-    "routes": [
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    },
     {
-        "src": "/(.*)",
-        "dest": "index.js"
+      "src": "Public/**",
+      "use": "@vercel/static"
     }
-]
+  ],
+  "routes": [
+    {
+      "src": "/stylesLogin.css",
+      "dest": "/Public/stylesLogin.css"
+    },
+    {
+      "src": "/img/(.*)",
+      "dest": "/Public/img/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.js"
+    }
+  ]
 }
