@@ -1,4 +1,4 @@
-const User = require('../models/User'); // Importar el modelo de Mongoose
+const User = require('../models/user'); // Importar el modelo de Mongoose
 const bcrypt = require('bcryptjs');
 
 // --- REGISTRO DE USUARIO ---
