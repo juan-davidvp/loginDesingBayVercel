@@ -195,7 +195,7 @@ body {
 }
 
 .form-control:focus {
-    border-color: #bd181d; /* Color marrón del diseño */
+    border-color: #F5A42A ; /* Color marrón del diseño */
     box-shadow: 0 0 0 0.2rem rgba(139, 69, 19, 0.25);
     background-color: #fff;
 }

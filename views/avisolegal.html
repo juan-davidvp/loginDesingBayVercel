@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesingBay Colombia</title> <!-- Titulo de la pagina -->
+    <link rel="shortcut icon" href="img/fabicon.png"> <!-- icono que se visualiza en la pestaña del navegador -->
+    <link rel="stylesheet" href="index.css"> <!-- Linkeo al archivo css del index -->
+    <script src="index.js"></script>
+</head>
+<body>
+    <header>  <!-- header con menu hambuerguesa, logo con vinculo al index, barra de busqueda, boton de login y carrito de compras -->
+        <div class="menu">  <!--Todo se coloca en div para poder moverlos en el contenedor principal header, al igual que todos van en un "a" para poder tener el click-->
+            <a class="a-header" href="#" onclick="openMenu()">
+                <img class="imagen-header" src="img/icons-header/menu.png" alt="Menu"> 
+            </a> 
+        </div>    <!-- boton menu que despliega la barra lateral -->
+
+        <nav>
+            <div id="mySidebar" class="sidebar">
+                <span class="close-btn" onclick="closeMenu()">   <!-- Boton que cierra la barra lateral -->
+                    <img class="imagen-header" src="img/icons-header/cerrar.png" alt="Menu">
+                </span>
+                <a href="/">Inicio</a>
+                <a href="/productos">Productos</a>
+                <a href="/quienesSomos">¿Quiénes somos?</a>
+                <a href="/contacto">Contacto</a>
+                <a href="/preguntas">Preguntas frecuentes</a>
+                <a href="/avisoLegal">Avisos legales</a>       <!-- contenido del menu que despliega la barra lateral -->
+            </div>
+        </nav>
+
+        <div class="logo">
+            <a class="a-header" href="/">
+                <img class="imagen-logo" src="img/icons-header/Logos-05.png" alt="Logo">
+            </a>
+        </div>        <!-- Logo de la pagina con vinculo directamente al index o pagina de inicio -->
+
+        <div class="buscar">
+            <input type="search" class="search-input" placeholder="Buscar un producto">
+        </div>        <!-- Barra de busqueda -->
+
+        <div class="carro">
+            <a class="a-header" href="#"> 
+                <img class="imagen-header" src="img/icons-header/carro-de-la-carretilla.png" alt="Carrito">
+            </a>
+        </div>         <!-- Boton que me lleva al carrito de compras -->
+
+        <div class="sesion">
+            <a class="a-header" href="#">
+                <img class="imagen-header" src="img/icons-header/usuario (1).png" alt="Usuario">
+            </a>
+        </div>          <!-- Boton que me lleva a la pagina de login -->
+    </header> <!-- header con menu hambuerguesa, logo con vinculo al index, barra de busqueda, boton de login y carrito de compras -->
+
+    <main>    <!--Contenido de la pagina "avisos legales"-->
+        <section class="aviso-legal">
+            <h2>Aviso Legal</h2>
+                <p><strong>Titular del sitio:</strong> DesingBay Colombia</p>
+                <p><strong>Responsable legal:</strong> Ruben Morales,Allison Linares,Santiago zuñiga,Juan david velez</p>
+                <p><strong>NIT:</strong> 123456789-0</p>
+                <p><strong>Dirección:</strong> Av sexta calle 14 Granada,Cali,Colombia</p>
+                <p><strong>Email:</strong> contacto@designbay.com</p>
+
+                <p>Este sitio web tiene como objetivo ofrecer obras de arte originales de artistas emergentes. Al navegar por esta página, el usuario acepta las condiciones de uso aquí descritas.</p>
+
+                <p>Todo el contenido es propiedad de sus autores o de DesignBay, protegido por derechos de autor. Queda prohibida su reproducción sin permiso.</p>
+
+                <p>DesignBay no se hace responsable del uso indebido del sitio ni del contenido enlazado a páginas externas.</p>
+
+                <p>Los datos personales serán tratados conforme a la Ley de Protección de Datos de Colombia. Consultá nuestra <a href="privacidad.html">Política de Privacidad</a>.</p>
+
+                <p>Este aviso legal se rige por la legislación colombiana. Cualquier controversia será resuelta ante los tribunales de Colombia.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer__redes">
+            <a class="a__footer" href="#">
+                <img class="img__footer" src="img/icon-footer/logotipo-de-instagram.png" alt="Instagram">
+            </a>
+            <a class="a__footer" href="#">
+                <img class="img__footer" src="img/icon-footer/tik-tok.png" alt="Tiktok">
+            </a>
+            <a class="a__footer" href="#">
+                <img class="img__footer" src="img/icon-footer/facebook.png" alt="Facebook">
+            </a>
+        </div>
+
+        <div class="footer__info">
+            <ul>
+                <li><a href="#">Productos</a></li>
+                <li><a href="quienessomos.html">¿Quiénes Somos?</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="preguntas.html">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+
+        <span class="footer__span">
+            Copyright <b>&copy; 2025 DesingBay</b> | Cali - Colombia | <a href="avisolegal.html">Avisos legales</a>
+        </span>
+    </footer>
+</body>
+</html>

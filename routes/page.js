@@ -13,12 +13,25 @@ const protectRoute = (req, res, next) => {
 
 // Ruta principal, redirige a login o dashboard
 router.get('/', (req, res) => {
-    if (req.session.user) {
-        res.redirect('/dashboard');
-    } else {
-        res.redirect('/login');
-    }
+    res.sendFile(path.join(process.cwd(), 'views', 'index.html'));
 });
+
+router.get('/avisoLegal', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'views', 'avisolegal.html'));
+});
+
+router.get('/preguntas', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'views', 'preguntas.html'));
+});
+
+router.get('/contacto', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'views', 'contacto.html'));
+});
+
+router.get('/quienesSomos', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'views', 'quienessomos.html'));
+});
+
 
 // Ruta para servir el archivo de login
 router.get('/login', (req, res) => {
@@ -26,7 +39,7 @@ router.get('/login', (req, res) => {
     if (req.session.user) {
         return res.redirect('/dashboard');
     }
-    res.sendFile(path.join(process.cwd(), 'Public', 'login.html'));
+    res.sendFile(path.join(process.cwd(), 'views', 'login.html'));
 });
 
 // Ruta protegida de ejemplo (dashboard)

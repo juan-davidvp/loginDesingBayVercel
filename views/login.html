@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesingBay Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Asegúrate de tener las imágenes en una ruta accesible, por ejemplo /imagenes/favicon.ico -->
+    <link rel="icon" href="img/Logos-03.png" type="image/x-icon">
+    <link rel="stylesheet" href="stylesLogin.css">
+</head>
+<body>
+    <div class="auth-wrapper">
+
+        <!-- Columna izquierda con imagen y texto -->
+        <div class="auth-image-column">
+            <div class="px-5">
+                <h3>El verdadero arte que puedes ver esta en ti</h3>
+                <p>Bienvenido a DesingBay</p>
+            </div>
+        </div>
+
+        <!-- Columna derecha con formularios -->
+        <div class="auth-form-column">
+            <img src="img\Logos-02.png" alt="Logo Davivienda" class="davivienda-logo-auth">
+
+            <!-- Pestañas de navegación -->
+            <ul class="nav nav-tabs" id="authTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-tab-pane" type="button" role="tab">Ingreso</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register-tab-pane" type="button" role="tab">Registro</button>
+                </li>
+            </ul>
+
+            <!-- Contenido de las pestañas -->
+            <div class="tab-content px-5" id="authTabContent">
+                
+                <!-- Formulario de Login -->
+                <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel">
+                    <h2>Bienvenido de nuevo!</h2>
+                    <p class="form-text-description">Nos alegra que disfrutes de DesingBay</p>
+                    
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" name="email" placeholder="Ingresa aquí tu correo electrónico" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="loginPassword" name="password" placeholder="Ingresa aquí tu contraseña" required>
+                        </div>
+                        <button type="submit" class="btn btn-auth-action w-100">Ingresar</button>
+                        <div id="loginMessage" class="auth-message"></div>
+                    </form>
+                </div>
+
+                <!-- Formulario de Registro -->
+                <div class="tab-pane fade" id="register-tab-pane" role="tabpanel">
+                    <h2>Tu arte local en a solo click</h2>
+                    <p class="form-text-description">Disfruta de multiples beneficios que tiene DesingBay para ti</p>
+                    
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label for="registerName" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="registerName" name="name" placeholder="Ingresa aquí tu nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="registerEmail" name="email" placeholder="Ingresa aquí tu correo electrónico" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="registerPassword" name="password" placeholder="Ingresa aquí tu contraseña" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="passwordConfirm" class="form-label">Confirma la Contraseña</label>
+                            <input type="password" class="form-control" id="passwordConfirm" name="passwordResend" placeholder="Ingresa aquí tu contraseña" required>
+                        </div>
+                        <button type="submit" class="btn btn-auth-action w-100">Registrar</button>
+                        <div id="registerMessage" class="auth-message"></div>
+                    </form>
+                </div>
+
+                <!-- Contenedor para notificaciones Toast -->
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="registrationToast" class="toast text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <strong class="me-auto">Registro Exitoso</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body" id="toastBodyMessage"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginMessage = document.getElementById('loginMessage');
+            const registerMessage = document.getElementById('registerMessage');
+            const registrationToastEl = document.getElementById('registrationToast');
+            const toastBody = document.getElementById('toastBodyMessage');
+            const registrationToast = new bootstrap.Toast(registrationToastEl);
+            
+            // Función para mostrar mensajes
+            const showMessage = (element, message, isError = true) => {
+                element.textContent = message;
+                element.className = 'auth-message'; // Reset classes
+                element.classList.add(isError ? 'error' : 'success');
+                element.style.display = 'block';
+            };
+
+            // Manejador del formulario de login
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                loginMessage.style.display = 'none';
+
+                const formData = new FormData(loginForm);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const response = await fetch('/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // Si el login es exitoso, el servidor redirigirá
+                        window.location.href = result.redirectUrl;
+                    } else {
+                        showMessage(loginMessage, result.message, true);
+                    }
+                } catch (error) {
+                    showMessage(loginMessage, 'Error de conexión con el servidor.', true);
+                }
+            });
+
+            // Manejador del formulario de registro
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                registerMessage.style.display = 'none';
+
+                const formData = new FormData(registerForm);
+                const data = Object.fromEntries(formData.entries());
+
+                if (data.password !== data.passwordResend) {
+                    showMessage(registerMessage, 'Las contraseñas no coinciden.', true);
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/auth/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+                    const result = await response.json();
+
+                    if (result.success) {
+                        registerForm.reset();
+                        toastBody.textContent = result.message;
+                        registrationToast.show();
+                        // Opcional: cambiar a la pestaña de login después del registro
+                        const loginTab = new bootstrap.Tab(document.getElementById('login-tab'));
+                        loginTab.show();
+                    } else {
+                        showMessage(registerMessage, result.message, true);
+                    }
+                } catch (error) {
+                    showMessage(registerMessage, 'Error de conexión con el servidor.', true);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

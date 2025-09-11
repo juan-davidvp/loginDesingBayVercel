@@ -1,0 +1,462 @@
+body {
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+header  {
+    margin: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    background-color: #000000;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 3px solid #F5A42A;
+}
+
+.imagen-header {
+    width: 25px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    transition: transform 400ms ease;
+}
+
+.imagen-logo {
+    width: 200px;
+    transition: transform 400ms ease;
+}
+
+.imagen-logo:hover {
+    transform: scale(1.1);
+    transition: 300ms; 
+}
+
+.imagen-header:hover {
+    transform: scale(1.3);
+    transition: 300ms;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #222;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+
+.sidebar a {
+  display: block;
+  padding: 15px 25px;
+  margin: 5px 0;
+  text-decoration: none;
+  font-size: 18px;
+  color: #f1f1f1;
+  transition: 0.2s;
+  border-radius: 5px;
+  letter-spacing: 0.5px;
+}
+
+.sidebar a:hover {
+  background: #444;
+  color: #ffcc00;
+  padding-left: 35px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.search-input {
+  width: 300px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 20px;                 /* aquí redondeas los bordes */
+  outline: none;                       /* quita el borde azul feo al hacer click */
+  transition: all 0.3s ease;           /* animación suave */
+}
+
+.search-input:focus {              /* Efecto al hacer foco */
+  border-color: #2A9DF5;
+}
+
+main {
+  flex: 1;
+}
+
+/*footer*/
+
+:root {
+  --footer-bg: #000000;         /* Fondo del footer */
+  --footer-text: #f1f1f1;       /* Texto principal */
+  --footer-link: #aaaaaa;       /* Enlaces */
+  --footer-link-hover: #ffffff; /* Hover de enlaces */
+  --footer-border: #333333;     /* Línea divisoria */
+}
+
+footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding: 2rem 1rem;
+  text-align: center;
+  border-top: 1px solid var(--footer-border);
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  bottom: 0;         /* Lo pega abajo */
+  left: 0;           /* Alineado a la izquierda */
+  /*width: 100%;/*   /* Que ocupe todo el ancho */
+  z-index: 1000;     /* Para que quede por encima de otros elementos */
+  border-top: 3px solid #F5A42A;
+}
+
+/* Redes sociales */
+.footer__redes {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer__redes .img__footer {
+  width: 28px;
+  height: 28px;
+  filter: brightness(0) invert(1); /* Hace los íconos blancos */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.footer__redes a:hover .img__footer {
+  transform: scale(1.2);
+  filter: brightness(0) invert(0.6); /* Hover más sutil */
+}
+
+/* Links de navegación */
+.footer__info ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer__info a {
+  color: var(--footer-link);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.footer__info a:hover {
+  color: var(--footer-link-hover);
+}
+
+/* Texto inferior */
+.footer__span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--footer-link);
+  margin-top: 1rem;
+}
+
+
+.footer__span a {
+  color: #a8dadc;            /* color de los enlaces */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer__span a:hover {
+  color: #f1faee;            /* color del enlace al pasar el mouse */
+}
+/*Sección ¿Quiénes somos?*/
+.quienes-somos {
+    text-align: center;
+    padding: 50px 20px;
+    /*background: linear-gradient(to bottom, #f5f5f5, #fff);*/
+}
+
+.quienes-somos h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.quienes-somos p {
+    max-width: 700px;
+    margin: auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Cards de misión y visión  */
+.mision-vision {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    width: 300px;
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card img {
+    width: 80px;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+footer {
+  text-align: center;
+}
+
+/* ------------------ CONTACTO ------------------ */
+#contacto {
+  padding: 50px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+#contacto h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.contact-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#contacto form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#contacto input,
+#contacto textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+#contacto textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+#contacto button {
+  background: #007BFF;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#contacto button:hover {
+  background: #0056b3;
+}
+
+/*preguntas freq*/
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  margin: 0;
+  padding: 0; 
+}
+
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.faq {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+details {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+details:hover {
+  background-color: #f0f0f0;
+}
+
+summary {
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+details[open] summary {
+  color: #007BFF;
+}
+
+/*aviso legal*/
+
+.aviso-legal {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.aviso-legal h2 {
+  text-align: center;
+  color: #007BFF;
+  margin-bottom: 20px;
+}
+
+.aviso-legal p {
+  margin-bottom: 15px;
+}
+
+.aviso-legal a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.aviso-legal a:hover {
+  text-decoration: underline;
+}
+
+.carruselesMain {                     /*main carruseles*/
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.container-carousel {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 98%;
+    height: 60%;
+    background-color: #e0e0e0;
+    box-shadow: 0 3px 20px 0 #175788;
+    border-radius: 0px;
+    overflow: hidden;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.carruseles {
+    width: 700vh;
+    height: 100%;
+    display: flex;
+}
+
+.slider-section {
+    width: calc(100% / 3);
+    height: 100%;
+}
+
+.slider-section img {
+    width: 300vh;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0px;
+}
+
+.btn-left,
+.btn-right {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    font-size: 1.5rem;
+    background-color: transparent;
+    border-radius: 50%;
+    padding: 5px;
+    font-weight: 600px;
+    cursor: pointer;
+    color: #ffffff81;
+    transform: translate(0,-50%);
+    transition: .5s ease;
+    user-select: none;
+}
+
+.btn-left:hover,
+.btn-right:hover {
+    background-color: white;
+    color: #fff;
+}
+
+.btn-left {
+    left: 10px;
+    background-color: rgb(210, 210, 210);
+}
+
+.btn-right {
+    right: 10px;
+    background-color: rgb(210, 210, 210);
+}
+
+#left {
+    width: 30px;
+    border-radius: 20px;
+}
+
+#right {
+    width: 30px;
+    border-radius: 20px;
+}
+
+main {
+  background-color: rgb(46, 46, 46);
+}

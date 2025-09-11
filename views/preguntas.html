@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesingBay Colombia</title> <!-- Titulo de la pagina -->
+    <link rel="shortcut icon" href="img/fabicon.png"> <!-- icono que se visualiza en la pestaña del navegador -->
+    <link rel="stylesheet" href="index.css"> <!-- Linkeo al archivo css del index -->
+    <script src="index.js"></script>
+</head>
+<body>
+    <header>  <!-- header con menu hambuerguesa, logo con vinculo al index, barra de busqueda, boton de login y carrito de compras -->
+        <div class="menu">  <!--Todo se coloca en div para poder moverlos en el contenedor principal header, al igual que todos van en un "a" para poder tener el click-->
+            <a class="a-header" href="#" onclick="openMenu()">
+                <img class="imagen-header" src="img/icons-header/menu.png" alt="Menu"> 
+            </a> 
+        </div>    <!-- boton menu que despliega la barra lateral -->
+
+        <nav>
+            <div id="mySidebar" class="sidebar">
+                <span class="close-btn" onclick="closeMenu()">   <!-- Boton que cierra la barra lateral -->
+                    <img class="imagen-header" src="img/icons-header/cerrar.png" alt="Menu">
+                </span>
+                <a href="/">Inicio</a>
+                <a href="/productos">Productos</a>
+                <a href="/quienesSomos">¿Quiénes somos?</a>
+                <a href="/contacto">Contacto</a>
+                <a href="/preguntas">Preguntas frecuentes</a>
+                <a href="/avisoLegal">Avisos legales</a>       <!-- contenido del menu que despliega la barra lateral -->
+            </div>
+        </nav>
+
+        <div class="logo">
+            <a class="a-header" href="/">
+                <img class="imagen-logo" src="img/icons-header/Logos-05.png" alt="Logo">
+            </a>
+        </div>        <!-- Logo de la pagina con vinculo directamente al index o pagina de inicio -->
+
+        <div class="buscar">
+            <input type="search" class="search-input" placeholder="Buscar un producto">
+        </div>        <!-- Barra de busqueda -->
+
+        <div class="carro">
+            <a class="a-header" href="#"> 
+                <img class="imagen-header" src="img/icons-header/carro-de-la-carretilla.png" alt="Carrito">
+            </a>
+        </div>         <!-- Boton que me lleva al carrito de compras -->
+
+        <div class="sesion">
+            <a class="a-header" href="#">
+                <img class="imagen-header" src="img/icons-header/usuario (1).png" alt="Usuario">
+            </a>
+        </div>          <!-- Boton que me lleva a la pagina de login -->
+    </header> <!-- header con menu hambuerguesa, logo con vinculo al index, barra de busqueda, boton de login y carrito de compras -->
+    
+    <main>
+        <h2>Preguntas Frecuentes</h2>
+
+        <section class="faq">
+            <details>
+                <summary>¿Qué tipo de arte puedo encontrar aquí?</summary>
+                    Vendemos obras originales de artistas emergentes en pintura, ilustración, arte digital y más.
+            </details>
+
+            <details>
+                <summary>¿Las obras vienen con certificado de autenticidad?</summary>
+                    Sí, todas las obras originales incluyen un certificado firmado por el artista.
+            </details>
+
+            <details>
+                <summary>¿Puedo devolver una obra si no me gusta?</summary>
+                    Aceptamos devoluciones dentro de los primeros 7 días posteriores a la entrega.
+            </details>
+
+            <details>
+                <summary>¿Cómo puedo pagar?</summary>
+                    Aceptamos tarjetas de crédito, débito, PayPal y transferencias bancarias.
+            </details>
+        </section>
+    </main>
+    <footer>
+        <div class="footer__redes">
+            <a class="a__footer" href="#">
+                <img class="img__footer" src="img/icon-footer/logotipo-de-instagram.png" alt="Instagram">
+            </a>
+            <a class="a__footer" href="#">
+                <img class="img__footer" src="img/icon-footer/tik-tok.png" alt="Tiktok">
+            </a>
+            <a class="a__footer" href="#">
+                <img class="img__footer" src="img/icon-footer/facebook.png" alt="Facebook">
+            </a>
+        </div>
+
+        <div class="footer__info">
+            <ul>
+                <li><a href="#">Productos</a></li>
+                <li><a href="quienessomos.html">¿Quiénes Somos?</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="preguntas.html">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+
+        <span class="footer__span">
+            Copyright <b>&copy; 2025 DesingBay</b> | Cali - Colombia | <a href="avisolegal.html">Avisos legales</a>
+        </span>
+    </footer>
+</body>
+</html>
