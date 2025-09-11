@@ -42,16 +42,20 @@ router.get('/login', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'views', 'login.html'));
 });
 
-// Ruta protegida de ejemplo (dashboard)
+
+// Protected dashboard route, serves the logged-in version of the main page
 router.get('/dashboard', protectRoute, (req, res) => {
-    // Aquí podrías servir otra página HTML o enviar datos para una app de una sola página
-    res.send(`
-        <h1>Bienvenido, ${req.session.user.name}!</h1>
-        <p>Este es tu panel de control.</p>
-        <form action="/auth/logout" method="POST">
-            <button type="submit">Cerrar Sesión</button>
-        </form>
-    `);
+    res.sendFile(path.join(process.cwd(), 'views', 'dashboard.html'));
+});
+
+// --- NEW API ROUTE ---
+// API route to get current user session data
+router.get('/api/session', (req, res) => {
+    if (req.session.user) {
+        res.json({ success: true, user: { name: req.session.user.name, email: req.session.user.email } });
+    } else {
+        res.status(401).json({ success: false, message: 'No authenticated session found.' });
+    }
 });
 
 module.exports = router;
