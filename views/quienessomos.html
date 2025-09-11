@@ -45,7 +45,7 @@
                 <img class="imagen-header" src="img/icons-header/carro-de-la-carretilla.png" alt="Carrito">
             </a>
         </div>         <!-- Boton que me lleva al carrito de compras -->
-
+        <div class="sesion" id="user-session"></div>
         <div class="sesion">
             <a class="a-header" href="#">
                 <img class="imagen-header" src="img/icons-header/usuario (1).png" alt="Usuario">
@@ -100,5 +100,33 @@
             Copyright <b>&copy; 2025 DesingBay</b> | Cali - Colombia | <a href="avisolegal.html">Avisos legales</a>
         </span>
     </footer>
+    <script>
+        // This script fetches the user session data and updates the header
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/api/session')
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success && data.user) {
+                        const userSessionDiv = document.getElementById('user-session');
+                        // Clear existing content and add the welcome message and logout button
+                        userSessionDiv.innerHTML = `
+                            <div style="display: flex; align-items: center; gap: 1rem; color: white; font-family: sans-serif; font-size: 16px;">
+                                <span style="font-weight: bold;">Hola, ${data.user.name}</span>
+                                <form action="/auth/logout" method="POST" style="margin: 0;">
+                                    <button type="submit" style="background-color: #F5A42A; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold;">
+                                        Salir
+                                    </button>
+                                </form>
+                            </div>
+                        `;
+                    } 
+                })
+                .catch(err => {
+                    console.error('Error fetching user session:', err);
+                    // Handle fetch error, perhaps by redirecting to login
+                    window.location.href = '/login';
+                });
+        });
+    </script>
 </body>
 </html>

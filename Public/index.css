@@ -95,6 +95,7 @@ header  {
 
 main {
   flex: 1;
+  background-color: #fdfeff ;
 }
 
 /*footer*/
@@ -455,8 +456,4 @@ details[open] summary {
 #right {
     width: 30px;
     border-radius: 20px;
-}
-
-main {
-  background-color: rgb(46, 46, 46);
 }

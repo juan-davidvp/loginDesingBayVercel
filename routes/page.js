@@ -13,6 +13,10 @@ const protectRoute = (req, res, next) => {
 
 // Ruta principal, redirige a login o dashboard
 router.get('/', (req, res) => {
+    // Si ya está logueado, lo mandamos al dashboard
+    if (req.session.user) {
+        return res.redirect('/dashboard');
+    }
     res.sendFile(path.join(process.cwd(), 'views', 'index.html'));
 });
 
@@ -31,6 +35,11 @@ router.get('/contacto', (req, res) => {
 router.get('/quienesSomos', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'views', 'quienessomos.html'));
 });
+
+router.get('/productos', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'views', 'products.html'));
+});
+
 
 
 // Ruta para servir el archivo de login
