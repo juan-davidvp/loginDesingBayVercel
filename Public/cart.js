@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cartTotalElement = document.getElementById('cart-total');
     const checkoutButton = document.getElementById('checkout-button');
     let userLoggedIn = false;
+    let userId = null;
 
     // Verificar si el usuario está logueado
     fetch('/api/session')
@@ -10,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data.success && data.user) {
                 userLoggedIn = true;
+                userId = data.user.id;
                 const userSessionDiv = document.getElementById('user-session');
                 userSessionDiv.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 1rem; color: white; font-family: sans-serif; font-size: 16px;">
@@ -56,8 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
             cartContainer.innerHTML = '';
             if (cart.length === 0) {
                 cartContainer.innerHTML = '<p class="cart-empty-message">Tu carrito está vacío.</p>';
+                checkoutButton.disabled = true; // Deshabilitar botón si el carrito está vacío
                 return;
             }
+            
+            checkoutButton.disabled = false; // Habilitar si hay items
 
             cart.forEach((item, index) => {
                 const cartItem = `
@@ -132,18 +137,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     if (checkoutButton) {
-        checkoutButton.addEventListener('click', () => {
+        checkoutButton.addEventListener('click', async () => {
             if (userLoggedIn) {
                 const cart = getCart();
                 if (cart.length > 0) {
-                    alert('¡Compra realizada con éxito!');
-                    localStorage.removeItem('cart');
-                    displayCart();
-                    updateCartCount();
+                    
+                    checkoutButton.disabled = true;
+                    checkoutButton.textContent = 'Procesando...';
+
+                    try {
+                        const response = await fetch('/api/purchase', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ cart: cart }),
+                        });
+
+                        const result = await response.json();
+
+                        if (response.ok && result.success) {
+                            alert('¡Compra realizada con éxito!');
+                            localStorage.removeItem('cart'); // Vaciar el carrito
+                            displayCart();
+                            updateCartCount();
+                        } else {
+                            // Mostrar mensaje de error del servidor (ej. "Debe iniciar sesión")
+                            alert(`Error: ${result.message || 'No se pudo procesar la compra.'}`);
+                        }
+                    } catch (error) {
+                        console.error('Error en el checkout:', error);
+                        alert('No se pudo conectar con el servidor. Por favor, intente más tarde.');
+                    } finally {
+                        checkoutButton.disabled = false;
+                        checkoutButton.textContent = 'Comprar';
+                    }
+
                 } else {
                     alert('Tu carrito está vacío.');
                 }
             } else {
+                // Si no está logueado, redirigir a la página de login
+                alert('Debes iniciar sesión para realizar una compra.');
                 window.location.href = '/login';
             }
         });

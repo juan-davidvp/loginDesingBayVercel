@@ -46,6 +46,7 @@ app.use(session({
 // Definición de Rutas
 app.use('/', require('./routes/page.js'));
 app.use('/auth', require('./routes/auth.js'));
+app.use('/api/purchase', require('./routes/purchase.js'));
 
 // 3. Eliminar app.listen y exportar la app
 // El servidor solo se iniciará localmente. En Vercel, esto no se ejecutará.

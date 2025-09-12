@@ -17,7 +17,12 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Por favor, ingrese una contraseña.'],
         minlength: 6, // Se recomienda un mínimo de caracteres
         select: false // Evita que la contraseña se envíe en las consultas por defecto
-    }
+    },
+    // Campo añadido para guardar referencia a las compras del usuario
+    purchases: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Purchase'
+    }]
 });
 
 // Middleware (hook) para encriptar la contraseña ANTES de guardarla
@@ -34,4 +39,3 @@ userSchema.pre('save', async function(next) {
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
-

@@ -69,5 +69,4 @@ router.get('/api/session', (req, res) => {
         res.status(401).json({ success: false, message: 'No authenticated session found.' });
     }
 });
-
 module.exports = router;
