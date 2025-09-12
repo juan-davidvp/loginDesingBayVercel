@@ -40,6 +40,9 @@ router.get('/productos', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'views', 'products.html'));
 });
 
+router.get('/cart', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'views', 'carrito.html'));
+});
 
 
 // Ruta para servir el archivo de login

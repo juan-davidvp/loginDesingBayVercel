@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesingBay - Carrito de Compras</title>
+    <link rel="shortcut icon" href="img/Logos-03.png">
+    <link rel="stylesheet" href="stylesProducts.css">
+    <link rel="stylesheet" href="stylesCart.css">
+</head>
+<body>
+    <header>
+        <div class="menu">
+            <a class="a-header" href="#" onclick="openMenu()">
+                <img class="imagen-header" src="img/icons-header/menu.png" alt="Menu"> 
+            </a> 
+        </div>
+
+        <nav>
+            <div id="mySidebar" class="sidebar">
+                <span class="close-btn" onclick="closeMenu()">
+                    <img class="imagen-header" src="img/icons-header/cerrar.png" alt="Menu">
+                </span>
+                <a href="/">Inicio</a>
+                <a href="/productos">Productos</a>
+                <a href="/quienesSomos">¿Quiénes somos?</a>
+                <a href="/contacto">Contacto</a>
+                <a href="/preguntas">Preguntas frecuentes</a>
+                <a href="/avisoLegal">Avisos legales</a>
+            </div>
+        </nav>
+
+        <div class="logo">
+            <a class="a-header" href="/">
+                <img class="imagen-logo" src="img/icons-header/Logos-05.png" alt="Logo">
+            </a>
+        </div>
+
+        <div class="buscar">
+            <input type="search" class="search-input" placeholder="Buscar un producto">
+        </div>
+
+        <div class="carro">
+            <a class="a-header" href="/cart"> 
+                <img class="imagen-header" src="img/icons-header/carro-de-la-carretilla.png" alt="Carrito">
+            </a>
+        </div>
+
+        <div class="sesion" id="user-session"></div>
+        <div class="sesion">
+            <a class="a-header" href="/login">
+                <img class="imagen-header" src="img/icons-header/usuario (1).png" alt="Usuario">
+            </a>
+        </div>
+    </header>
+    
+    <main>
+        <h2 class="main-title">Carrito de Compras</h2>
+        <div id="cart-container" class="cart-grid">
+            <!-- Los productos del carrito se insertarán aquí -->
+        </div>
+        <div class="cart-summary">
+            <p>Total: <span id="cart-total">$0.00</span></p>
+            <button id="checkout-button">Comprar</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer__redes">
+            <a class="a__footer" href="#"><img class="img__footer" src="img/icon-footer/logotipo-de-instagram.png" alt="Instagram"></a>
+            <a class="a__footer" href="#"><img class="img__footer" src="img/icon-footer/tik-tok.png" alt="Tiktok"></a>
+            <a class="a__footer" href="#"><img class="img__footer" src="img/icon-footer/facebook.png" alt="Facebook"></a>
+        </div>
+        <div class="footer__info">
+            <ul>
+                <li><a href="/productos">Productos</a></li>
+                <li><a href="/quienesSomos">¿Quiénes Somos?</a></li>
+                <li><a href="/contacto">Contacto</a></li>
+                <li><a href="/preguntas">Preguntas Frecuentes</a></li>
+            </ul>
+        </div>
+        <span class="footer__span">
+            Copyright <b>&copy; 2025 DesingBay</b> | Cali - Colombia | <a href="/avisoLegal">Avisos legales</a>
+        </span>
+    </footer>
+
+    <script src="index.js"></script>
+    <script src="cart.js"></script>
+</body>
+</html>

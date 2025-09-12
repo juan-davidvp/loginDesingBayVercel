@@ -22,6 +22,15 @@ function fetchArtworks(url) {
             data.data.forEach(artwork => {
                 if (artwork.image_id && artwork.title) { // Solo muestra obras que tienen una imagen
                     const imageUrl = imageBaseUrl + artwork.image_id + imageParams;
+                    const artworkData = {
+                        id: artwork.id,
+                        title: artwork.title,
+                        imageUrl: imageUrl,
+                        department: artwork.department_title || 'N/A',
+                        origin: artwork.place_of_origin || 'Unknown',
+                        dimensions: artwork.dimensions || 'Dimensions not available'
+                    };
+                    
                     const artworkCard = `
                         <div class="artwork-card">
                             <img src="${imageUrl}" alt="${artwork.title || 'Artwork image'}" loading="lazy">
@@ -30,6 +39,7 @@ function fetchArtworks(url) {
                                 <p class="artwork-detail">${artwork.department_title || 'N/A'}</p>
                                 <p class="artwork-detail"><em>${artwork.place_of_origin || 'Unknown'}</em></p>
                                 <p class="artwork-detail">${artwork.dimensions || 'Dimensions not available'}</p>
+                                <button class="add-to-cart-btn" onclick='addToCart(${JSON.stringify(artworkData)})'>Añadir al carrito</button>
                             </div>
                         </div>
                     `;

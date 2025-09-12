@@ -268,3 +268,20 @@ main {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+.add-to-cart-btn {
+    background-color: #2A9DF5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: auto; /* Pushes the button to the bottom */
+}
+
+.add-to-cart-btn:hover {
+    background-color: #258ad1;
+}
