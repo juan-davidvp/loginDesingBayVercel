@@ -184,31 +184,87 @@ footer {
   color: #f1faee;            /* color del enlace al pasar el mouse */
 }
 
-#pokemon-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+main {
+    padding: 2rem 1rem;
 }
 
-.pokemon-card{
-    background-color: white;
-    border: 2px solid #ef5350;
-    border-radius: 8px;
-    padding: 10px;
-    width: 150px;
+.main-title {
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #222;
 }
 
-.pokemon-card img{
-    width: 100px;
-    height: 100px;
+.artwork-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.pokemon-name{
+.artwork-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.artwork-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.artwork-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.artwork-info {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.artwork-title {
     font-weight: bold;
-    color: #d32f2f;
-    margin-top: 8px;
-    text-transform: capitalize;
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0 0 0.5rem 0;
+}
+
+.artwork-detail {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0.25rem 0;
+}
+
+.load-more-container {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+#load-more {
+    background-color: #F5A42A;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#load-more:hover:not(:disabled) {
+    background-color: #e09426;
+    transform: scale(1.05);
+}
+
+#load-more:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }

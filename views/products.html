@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DesingBay Colombia</title> <!-- Titulo de la pagina -->
     <link rel="shortcut icon" href="img/Logos-03.png"> <!-- icono que se visualiza en la pestaña del navegador -->
-    <link rel="stylesheet" href="index.css"> <!-- Linkeo al archivo css del index -->
+    <link rel="stylesheet" href="stylesProducts.css"> <!-- Linkeo al archivo css del index -->
     <script src="index.js"></script>
     <script src="API.js"></script>
     
@@ -57,8 +57,14 @@
     </header> <!-- header con menu hambuerguesa, logo con vinculo al index, barra de busqueda, boton de login y carrito de compras -->
     
     <main>
-        <h2>Productos</h2>
-        <div id="pokemon-container"></div>
+        <h2 class="main-title">Galería de Obras</h2>
+        <div id="artwork-container" class="artwork-grid">
+            <!-- Las tarjetas de las obras de arte se insertarán aquí dinámicamente -->
+        </div>
+        
+        <div class="load-more-container">
+            <button id="load-more" style="display: none;">Ver Más Obras</button>
+        </div>
 
         
     </main>
