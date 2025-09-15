@@ -42,15 +42,15 @@ exports.login = async (req, res) => {
     }
 
     try {
-        // 1. Buscar el usuario y explícitamente pedir la contraseña (que por defecto no se incluye)
+        //Buscar el usuario y explícitamente pedir la contraseña (que por defecto no se incluye)
         const user = await User.findOne({ email: email }).select('+password');
 
-        // 2. Verificar si el usuario existe y si la contraseña es correcta
+        //Verificar si el usuario existe y si la contraseña es correcta
         if (!user || !(await bcrypt.compare(password, user.password))) {
             return res.status(401).json({ success: false, message: 'Email o Contraseña incorrecta.' });
         }
 
-        // 3. Si todo es correcto, crear la sesión del usuario
+        //Si todo es correcto, crear la sesión del usuario
         req.session.user = {
             id: user._id,
             name: user.name,
@@ -74,13 +74,13 @@ exports.login = async (req, res) => {
 
 // --- CERRAR SESIÓN ---
 exports.logout = (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.error("Error destroying session: ", err);
-    }
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Error destroying session: ", err);
+        }
     res.clearCookie("connect.sid");
     res.redirect("/login");
-  });
+    });
 };
 
 

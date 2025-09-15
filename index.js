@@ -1,3 +1,4 @@
+//Importaciones
 const express = require('express');
 const path = require('path');
 const dotenv = require('dotenv');
@@ -5,9 +6,10 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo'); // 1. Importar connect-mongo
 
+// Configuración de variables de entorno
 dotenv.config({ path: './.env' });
 
-// --- CONEXIÓN A LA BASE DE DATOS CON MONGOOSE ---
+//Conexion a la base de datos con moongose
 const mongoConnection = mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connection successful!'))
     .catch(err => {
@@ -15,6 +17,7 @@ const mongoConnection = mongoose.connect(process.env.MONGO_URI)
         process.exit(1);
     });
 
+//Inicializacion de express
 const app = express();
 
 // Configuración de directorio público
@@ -25,7 +28,7 @@ app.use(express.static(publicDirectory));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// 2. Configuración AVANZADA de express-session con MongoStore
+//Configuración AVANZADA de express-session con MongoStore
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
@@ -42,7 +45,6 @@ app.use(session({
     }
 }));
 
-
 // Definición de Rutas
 app.use('/', require('./routes/page.js'));
 app.use('/auth', require('./routes/auth.js'));
@@ -57,4 +59,5 @@ if (process.env.NODE_ENV !== 'production') {
     });
 }
 
-module.exports = app; // ¡Esta línea es crucial para Vercel!
+// ¡Esta línea es crucial para Vercel!
+module.exports = app; 
