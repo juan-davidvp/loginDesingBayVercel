@@ -493,3 +493,44 @@ main {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
+/* ============== MEDIA QUERIES PARA RESPONSIVE ============== */
+
+@media (max-width: 768px) {
+    .layout {
+        /* Cambiamos el layout a una sola columna */
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+    }
+
+    .layout__sidebar {
+        display: none; /* Ocultamos la barra lateral. Se mostrará con el botón de menú. */
+    }
+
+    header {
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    
+    .buscar {
+        display: none;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .product-card {
+        width: 100%; /* Hacemos que la tarjeta ocupe el ancho disponible */
+        max-width: 350px; /* Le damos un ancho máximo para que no se estire demasiado */
+        margin: 0 auto;
+    }
+    
+    #artwork-container, #pokemon-container {
+        grid-template-columns: 1fr; /* Una sola columna para los productos en móviles */
+        padding: 0;
+    }
+}

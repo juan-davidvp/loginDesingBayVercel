@@ -852,3 +852,69 @@ fieldset {
   background: #0056b3;
   transform: translateY(-2px);
 }
+
+
+/* ============== MEDIA QUERIES PARA RESPONSIVE ============== */
+
+/* Para tablets y dispositivos más pequeños */
+@media (max-width: 1024px) {
+    .container-categoria, .container-categoria2 {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+
+/* Para móviles */
+@media (max-width: 768px) {
+    header {
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+
+    .buscar {
+        display: none; /* Oculta la barra de búsqueda en móviles */
+    }
+
+    .logo .imagen-logo {
+        width: 150px; /* Reduce el tamaño del logo */
+    }
+
+    .carruselesMain {
+        height: 50vh; /* Reduce la altura del carrusel */
+    }
+
+    .container-categorias-padre {
+      margin: 20px;
+    }
+
+    .container-categoria, .container-categoria2 {
+        flex-direction: column; /* Apila las categorías verticalmente */
+        height: auto;
+        margin-left: 0;
+        margin-right: 0;
+        gap: 20px; /* Añade espacio entre los botones de categoría */
+    }
+
+    .container-categoria2 {
+      margin-top: 20px; /* Espacio entre las dos filas de categorías */
+    }
+
+    #imagen1,
+    #imagen2,
+    #imagen3,
+    #imagen4,
+    #imagen5 {
+      width: 150px;
+      height: 150px;
+    }
+
+    .texto-cat {
+        font-size: 24px;
+    }
+
+    .footer__info ul {
+        flex-direction: column; /* Apila los links del footer */
+        gap: 1rem;
+    }
+}
