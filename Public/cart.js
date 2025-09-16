@@ -1,3 +1,5 @@
+//const Swal = require('sweetalert2')
+
 document.addEventListener('DOMContentLoaded', () => {
     const cartContainer = document.getElementById('cart-container');
     const cartTotalElement = document.getElementById('cart-total');
@@ -27,31 +29,35 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(err => console.error('Error fetching user session:', err));
 
+
+    // Obtener el carrito desde localStorage
     function getCart() {
-        return JSON.parse(localStorage.getItem('cart')) || [];
+        const raw = JSON.parse(localStorage.getItem('cart')) || [];
+        return raw.map(i => {
+            const priceRaw = i.price;
+            // Quitar símbolos/no numéricos y convertir a número (acepta "$", comas, etc.)
+            const priceNumber = typeof priceRaw === 'number'
+                ? priceRaw
+                : Number(String(priceRaw).replace(/[^0-9.-]+/g, '')) || 0;
+            return {
+                ...i,
+                price: priceNumber,
+                quantity: Number(i.quantity) || 1
+            };
+        });
     }
 
+    // Guardar el carrito en localStorage
     function saveCart(cart) {
-        localStorage.setItem('cart', JSON.stringify(cart));
+        const safe = cart.map(i => ({
+            ...i,
+            price: Number(i.price) || 0,
+            quantity: Number(i.quantity) || 1
+        }));
+        localStorage.setItem('cart', JSON.stringify(safe));
     }
 
-    window.addToCart = function(artwork) {
-        const cart = getCart();
-        const existingProductIndex = cart.findIndex(item => item.id === artwork.id);
-
-        if (existingProductIndex > -1) {
-            cart[existingProductIndex].quantity++;
-        } else {
-            artwork.quantity = 1;
-            // Asignar un precio aleatorio entre 50 y 500
-            artwork.price = Math.floor(Math.random() * 451) + 50;
-            cart.push(artwork);
-        }
-        saveCart(cart);
-        alert(`${artwork.title} ha sido añadido al carrito.`);
-        updateCartCount();
-    };
-
+    // Mostrar el carrito en la página
     function displayCart() {
         const cart = getCart();
         if (cartContainer) {
@@ -86,6 +92,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Añadir un producto al carrito
+    window.addToCart = function(artwork) {
+        const cart = getCart();
+        const existingProductIndex = cart.findIndex(item => item.id === artwork.id);
+
+        // Asegurar que artwork.price sea número
+        artwork.price = Number(artwork.price) || artwork.price;
+        if (!artwork.price) {
+            artwork.price = Math.floor(Math.random() * 451) + 50; // fallback si no hay precio válido
+        }
+        artwork.quantity = Number(artwork.quantity) || 1;
+
+        if (existingProductIndex > -1) {
+            cart[existingProductIndex].quantity++;
+        } else {
+            artwork.quantity = 1;
+            cart.push(artwork);
+        }
+        saveCart(cart);
+        if (typeof Swal !== 'undefined') {
+            Swal.fire({
+                toast: true,
+                position: 'bottom-end',
+                icon: 'success',
+                title: `${artwork.title} ha sido añadido al carrito.`,
+                showConfirmButton: false,
+                timer: 2500
+            });
+        } else {
+            alert(`${artwork.title} ha sido añadido al carrito.`);
+        }
+        updateCartCount();
+    };
+
+    // Eliminar un producto del carrito
     window.removeFromCart = function(index) {
         let cart = getCart();
         cart.splice(index, 1);
@@ -94,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCartCount();
     };
 
+    // Actualizar la cantidad de un producto en el carrito
     window.updateQuantity = function(index, change) {
         let cart = getCart();
         if (cart[index]) {
@@ -106,15 +148,21 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCartCount();
         }
     };
-
+    
+    // Actualizar el precio total del carrito
     function updateCartTotal() {
         const cart = getCart();
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const total = cart.reduce((sum, item) => {
+            const price = Number(item.price) || 0;
+            const qty = Number(item.quantity) || 0;
+            return sum + (price * qty);
+        }, 0);
         if (cartTotalElement) {
             cartTotalElement.textContent = `$${total.toFixed(2)}`;
         }
     }
     
+    // Actualizar el contador del carrito en el icono
     function updateCartCount() {
         const cart = getCart();
         const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -135,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
+    // Manejar el proceso de checkout
     if (checkoutButton) {
         checkoutButton.addEventListener('click', async () => {
             if (userLoggedIn) {
@@ -157,7 +205,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         const result = await response.json();
 
                         if (response.ok && result.success) {
-                            alert('¡Compra realizada con éxito!');
+                            Swal.fire({
+                                icon: 'success',
+                                title: '¡Excelente!',
+                                text: 'Tu compra ha sido procesada con éxito.',
+                                timer: 2000,
+                                showConfirmButton: false,
+                                toast: true
+                            });
                             localStorage.removeItem('cart'); // Vaciar el carrito
                             displayCart();
                             updateCartCount();
@@ -167,19 +222,44 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     } catch (error) {
                         console.error('Error en el checkout:', error);
-                        alert('No se pudo conectar con el servidor. Por favor, intente más tarde.');
+                        Swal.fire({
+                        icon: "error",
+                        title: "Error Servidor",
+                        text: "Ocurrió un error al procesar tu compra. Por favor, intenta nuevamente más tarde.",
+                        confirmButtonText: "Aceptar",
+                        confirmButtonColor: "#f5592aff"
+                        });
                     } finally {
                         checkoutButton.disabled = false;
                         checkoutButton.textContent = 'Comprar';
                     }
 
                 } else {
-                    alert('Tu carrito está vacío.');
+                    Swal.fire({
+                        icon: "error",
+                        title: "Carrito Vacío",
+                        text: "Tu carrito está vacío. Añade productos antes de proceder al pago.",
+                        confirmButtonText: "Entendido",
+                        confirmButtonColor: "#F5A42A"
+                        });
                 }
             } else {
                 // Si no está logueado, redirigir a la página de login
-                alert('Debes iniciar sesión para realizar una compra.');
-                window.location.href = '/login';
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Usuario no autenticado",
+                        text: "Debes iniciar sesión para realizar una compra.",
+                        confirmButtonText: "Login",
+                        confirmButtonColor: "#F5A42A"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/login';
+                        }
+                    });
+                } else {
+                    window.location.href = '/login';
+                }
             }
         });
     }

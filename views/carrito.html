@@ -63,6 +63,38 @@
             <p>Total: <span id="cart-total">$0.00</span></p>
             <button id="checkout-button">Comprar</button>
         </div>
+
+                    <section id="productos" style="max-width:800px;margin:0 auto;padding:1rem;">
+            <h2 style="margin-top:2rem;">Carrito de compras</h2>
+            <div id="lista-productos">
+                <!-- Aquí entran los productos desde la API si otra parte del código los espera -->
+            </div>
+        </section>
+
+                <section id="carrito" style="max-width:800px;margin:1.5rem auto;padding:1rem;background:#fff;border-radius:8px;">
+            <h2>Tu carrito</h2>
+            <table style="width:100%;border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th style="text-align:left;padding:8px;border-bottom:1px solid #eee;">Producto</th>
+                        <th style="text-align:right;padding:8px;border-bottom:1px solid #eee;">Precio</th>
+                        <th style="text-align:center;padding:8px;border-bottom:1px solid #eee;">Cantidad</th>
+                        <th style="text-align:right;padding:8px;border-bottom:1px solid #eee;">Subtotal</th>
+                        <th style="text-align:center;padding:8px;border-bottom:1px solid #eee;">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody id="carrito-items">
+                    <!-- Filas añadidas por JS que espere este formato -->
+                </tbody>
+            </table>
+
+            <!-- Resumen compra: incluye both IDs 'total' y 'cart-total' y both buttons -->
+            <div id="resumen" style="text-align:right;margin-top:1rem;">
+                <h3>Resumen</h3>
+                <p>Total: <span id="total">$0</span></p> <!-- id usado en otra versión del JS -->
+                <button id="btn-finalizar" style="background:#27ae60;color:#fff;border:none;padding:10px 18px;border-radius:20px;cursor:pointer;">Finalizar compra</button>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -85,6 +117,7 @@
     </footer>
 
     <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="cart.js"></script>
 </body>
 </html>

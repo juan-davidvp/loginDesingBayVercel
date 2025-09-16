@@ -6,6 +6,7 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo'); // 1. Importar connect-mongo
 
+
 // Configuración de variables de entorno
 dotenv.config({ path: './.env' });
 

@@ -45,9 +45,18 @@ router.get('/productos', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'views', 'products.html'));
 });
 
+// Configuracion de la ruta de los productos
+router.get('/formulario', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'views', 'formuario.html'));
+});
+
 // Configuracion de la ruta del carrito de compras
 router.get('/cart', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'views', 'carrito.html'));
+});
+
+router.get('/perfil', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'views', 'perfil.html'));
 });
 
 router.get('/login', (req, res) => {

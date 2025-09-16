@@ -12,6 +12,7 @@ function fetchArtworks(url) {
     loadMoreButton.textContent = 'Cargando...';
     loadMoreButton.disabled = true;
 
+    // Realiza la solicitud a la API
     fetch(url)
         .then(res => res.json())
         .then(data => {
@@ -22,27 +23,34 @@ function fetchArtworks(url) {
             data.data.forEach(artwork => {
                 if (artwork.image_id && artwork.title) { // Solo muestra obras que tienen una imagen
                     const imageUrl = imageBaseUrl + artwork.image_id + imageParams;
+                    const title = artwork.title ?? "Sin título";
+                    const category = artwork.department_title ?? "Sin categoría";
+                    const price = Number(((Math.random() * 500) + 50).toFixed(2));
                     const artworkData = {
                         id: artwork.id,
-                        title: artwork.title,
+                        title: title,
                         imageUrl: imageUrl,
                         department: artwork.department_title || 'N/A',
                         origin: artwork.place_of_origin || 'Unknown',
-                        dimensions: artwork.dimensions || 'Dimensions not available'
+                        dimensions: artwork.dimensions || 'Dimensions not available',
+                        price: price
                     };
                     
                     const artworkCard = `
-                        <div class="artwork-card">
-                            <img src="${imageUrl}" alt="${artwork.title || 'Artwork image'}" loading="lazy">
-                            <div class="artwork-info">
-                                <p class="artwork-title">${artwork.title}</p>
-                                <p class="artwork-detail">${artwork.department_title || 'N/A'}</p>
-                                <p class="artwork-detail"><em>${artwork.place_of_origin || 'Unknown'}</em></p>
-                                <p class="artwork-detail">${artwork.dimensions || 'Dimensions not available'}</p>
-                                <button class="add-to-cart-btn" onclick='addToCart(${JSON.stringify(artworkData)})'>Añadir al carrito</button>
-                            </div>
-                        </div>
-                    `;
+                    <div class="product-card">
+                    <img src="${imageUrl}" alt="${title}">
+                    <div class="product-info">
+                        <h3 class="product-title">${title}</h3>
+                        <p class="product-category">${category}</p>
+                        <p class="product-price">${price.toFixed(2)}</p>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn add-cart" onclick='addToCart(${JSON.stringify(artworkData)})'>Añadir Carrito</button>
+                        <button class="btn details">Detalles</button>
+                    </div>
+                    </div>
+                    `;  
+
                     // Usamos insertAdjacentHTML para añadir las nuevas tarjetas sin borrar las existentes
                     container.insertAdjacentHTML('beforeend', artworkCard);
                 }
@@ -54,7 +62,8 @@ function fetchArtworks(url) {
                 loadMoreButton.textContent = 'Ver Más Obras';
                 loadMoreButton.disabled = false;
             } else {
-                loadMoreButton.style.display = 'none'; // Oculta el botón si no hay más páginas
+                // Oculta el botón si no hay más páginas
+                loadMoreButton.style.display = 'none'; 
             }
         })
         .catch(error => {
@@ -66,6 +75,7 @@ function fetchArtworks(url) {
 
 // Event listener que se dispara cuando el DOM está completamente cargado
 document.addEventListener('DOMContentLoaded', () => {
+
     // URL inicial de la API para la primera carga de obras
     const initialUrl = "https://api.artic.edu/api/v1/artworks?fields=id,title,image_id,department_title,place_of_origin,dimensions,thumbnail";
     fetchArtworks(initialUrl);

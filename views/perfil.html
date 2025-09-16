@@ -4,31 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DesingBay Colombia</title> <!-- Titulo de la pagina -->
-    <link rel="shortcut icon" href="img/Logos-03.png"> <!-- icono que se visualiza en la pestaña del navegador -->
-    <link rel="stylesheet" href="stylesProducts.css"> <!-- Linkeo al archivo css del index -->
-    <script src="index.js"></script>
-    <script src="API.js"></script>
-    
+    <link rel="shortcut icon" href="img/fabicon.png"> <!-- icono que se visualiza en la pestaña del navegador -->
+    <link rel="stylesheet" href="index.css"> <!-- Linkeo al archivo css del index -->
+    <script src="index.js"></script> <!-- Archivo JS -->
 </head>
-<body class="layout">
-    <header class="layout__header">  <!-- header con menu hambuerguesa, logo con vinculo al index, barra de busqueda, boton de login y carrito de compras -->
-        <div class="menu">  <!--Todo se coloca en div para poder moverlos en el contenedor principal header, al igual que todos van en un "a" para poder tener el click-->
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="menu">
             <a class="a-header" href="#" onclick="openMenu()">
                 <img class="imagen-header" src="img/icons-header/menu.png" alt="Menu"> 
             </a> 
-        </div>    <!-- boton menu que despliega la barra lateral -->
+        </div>
 
         <nav>
             <div id="mySidebar" class="sidebar">
-                <span class="close-btn" onclick="closeMenu()">   <!-- Boton que cierra la barra lateral -->
-                    <img class="imagen-header" src="img/icons-header/cerrar.png" alt="Menu">
+                <span class="close-btn" onclick="closeMenu()">
+                    <img class="imagen-header" src="img/icons-header/cerrar.png" alt="Cerrar">
                 </span>
-                <a href="/">Inicio</a>
-                <a href="/productos">Productos</a>
-                <a href="/quienesSomos">¿Quiénes somos?</a>
-                <a href="/contacto">Contacto</a>
-                <a href="/preguntas">Preguntas frecuentes</a>
-                <a href="/avisoLegal">Avisos legales</a>       <!-- contenido del menu que despliega la barra lateral -->
+                    <a href="/">Inicio</a>
+                    <a href="/productos">Productos</a>
+                    <a href="/quienesSomos">¿Quiénes somos?</a>
+                    <a href="/contacto">Contacto</a>
+                    <a href="/preguntas">Preguntas frecuentes</a>
+                    <a href="/avisoLegal">Avisos legales</a>  
             </div>
         </nav>
 
@@ -36,70 +35,65 @@
             <a class="a-header" href="/">
                 <img class="imagen-logo" src="img/icons-header/Logos-05.png" alt="Logo">
             </a>
-        </div>        <!-- Logo de la pagina con vinculo directamente al index o pagina de inicio -->
-
+        </div>
         <div class="buscar">
             <input type="search" class="search-input" placeholder="Buscar un producto">
-        </div>        <!-- Barra de busqueda -->
+        </div>
 
         <div class="carro">
-            <a class="a-header" href="/cart"> 
+            <a class="a-header" href="/cart">
                 <img class="imagen-header" src="img/icons-header/carro-de-la-carretilla.png" alt="Carrito">
             </a>
-        </div>         <!-- Boton que me lleva al carrito de compras -->
+        </div>
 
-        <div class="sesion" id="user-session"></div>
         <div class="sesion">
             <a class="a-header" href="/login">
                 <img class="imagen-header" src="img/icons-header/usuario (1).png" alt="Usuario">
             </a>
-        </div>          <!-- Boton que me lleva a la pagina de login -->
-    </header> <!-- header con menu hambuerguesa, logo con vinculo al index, barra de busqueda, boton de login y carrito de compras -->
+        </div>
+    </header>
     
-    <aside class="layout__sidebar">
-          <div class="sidebar-section">
-    <h2>Buscar</h2>
-    <input type="text" placeholder="Buscar productos..." class="search-input">
-  </div>
+   <main>
+  <div class="perfil-contenedor">
+    
+    <!-- Foto y nombre -->
+    <section class="perfil-header">
+      <div class="perfil-foto">
+        <img id="user-photo" src="img/rubencho.jpg">
+      </div>
+      <div class="perfil-info">
+        <h1>Rubén Morales</h1>
+        <p>📧 rubencho@gmail.com</p>
+        <p>🎂 23 años</p>
+        <p>🎶 Músico</p>
+      </div>
+    </section>
 
-  <div class="sidebar-section">
-    <h2>Categorías</h2>
-    <ul class="categories">
-      <li><a href="#">Musica</a></li>
-      <li><a href="#">Arte 3D</a></li>
-      <li><a href="#">Moda</a></li>
-      <li><a href="#">Pinturas</a></li>
-      <li><a href="#">Libros</a></li>
-    </ul>
-  </div>
+   
+    <section class="perfil-preferencias">
+      <h2>Preferencias de Arte</h2>
+      <ul>
+        <li>Pintura contemporánea</li>
+        <li>Fotografía artística</li>
+        <li>Música Salsa</li>
+      </ul>
+    </section>
 
-<div class="sidebar-section">
-  <h2>Rango de precios</h2>
-  <div class="price-slider">
-    <input type="range" id="min-price" min="0" max="1000" value="100" step="10">
-    <input type="range" id="max-price" min="0" max="1000" value="900" step="10">
-    <div class="progress"></div>
-  </div>
-  <div class="price-values">
-    <span id="min-price-value">$100</span> - 
-    <span id="max-price-value">$900</span>
-  </div>
-</div>
-    </aside>
+    
+    <section class="perfil-compras">
+      <h2>Compras Recientes</h2>
+      <div>
+      </div>
+    </section>
 
-    <main>
-        <h2 class="main-title">Galería de Obras</h2>
-        <div id="artwork-container" class="artwork-grid">
-            <!-- Las tarjetas de las obras de arte se insertarán aquí dinámicamente -->
-        </div>
-        
-        <div class="load-more-container">
-            <button id="load-more" style="display: none;">Ver Más Obras</button>
-        </div>
-
-        
-    </main>
-    <footer class="layout__footer">
+    <!-- Botones -->
+    <div class="perfil-acciones">
+      <button>Editar Perfil</button>
+      <div class="sesion" id="user-session"></div>
+    </div>
+  </div>
+</main>
+<footer>
         <div class="footer__redes">
             <a class="a__footer" href="#">
                 <img class="img__footer" src="img/icon-footer/logotipo-de-instagram.png" alt="Instagram">
@@ -125,8 +119,6 @@
             Copyright <b>&copy; 2025 DesingBay</b> | Cali - Colombia | <a href="avisolegal.html">Avisos legales</a>
         </span>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="cart.js"></script>
     <script>
         // This script fetches the user session data and updates the header
         document.addEventListener('DOMContentLoaded', () => {
@@ -138,7 +130,6 @@
                         // Clear existing content and add the welcome message and logout button
                         userSessionDiv.innerHTML = `
                             <div style="display: flex; align-items: center; gap: 1rem; color: white; font-family: sans-serif; font-size: 16px;">
-                                <span style="font-weight: bold;">Hola, ${data.user.name}</span>
                                 <form action="/auth/logout" method="POST" style="margin: 0;">
                                     <button type="submit" style="background-color: #F5A42A; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-size: 14px; font-weight: bold;">
                                         Salir
@@ -157,3 +148,4 @@
     </script>
 </body>
 </html>
+ 
